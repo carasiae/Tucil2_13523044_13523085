@@ -16,7 +16,7 @@
                                 quadtree node)
     @param variance_fn          the variance function used to determine
                                 variance/error measurement
-    @param current_node         current node of quadtree (representing a part
+    @param tree                 current node of quadtree (representing a part
                                 of image) processed 
 */
 void quad_tree_compression(const unsigned char  *rgb_input,
@@ -26,6 +26,6 @@ void quad_tree_compression(const unsigned char  *rgb_input,
                            double               error_threshold,
                            int                  minimum_block_size,
                            VarianceFunction     variance_fn,
-                           QTreeNode            current_node);
+                           QTreeNode            tree);
 
 #endif
