@@ -9,9 +9,9 @@ RGB average(const unsigned char *rgb_data, int row_start, int col_start, int row
     #pragma omp parallel for reduction(+: r, g, b)
     for (int i = row_start; i <= row_end; i++){
         for (int j = col_start; j <= col_end; j++){
-            r += (double) rgb_data[(i*width+j)*3];
-            g += (double) rgb_data[(i*width+j)*3+1];
-            b += (double) rgb_data[(i*width+j)*3+2];
+            r += (double) rgb_data[(i * width + j) * 3];
+            g += (double) rgb_data[(i * width + j) * 3 + 1];
+            b += (double) rgb_data[(i * width + j) * 3 + 2];
         }
     }
     int area = (row_end - row_start + 1) * (col_end - col_start + 1);
