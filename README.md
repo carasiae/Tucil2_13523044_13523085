@@ -33,7 +33,7 @@ This project implements a quadtree compression algorithm for efficiently reducin
 
 ## 🛠️ Installation & Setup
 ### **1️⃣ Prerequisites**
-Download stb_image.h & stb_image_write.h library if not yet installed
+Install dependencies if not yet installed
 ```
 make dep
 ```
