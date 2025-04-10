@@ -23,6 +23,8 @@ int main(int argc, char **argv){
      
     get_input(input_filename, output_filename, &minimum_block_size, &error_threshold, &variance_fn);
 
+    clock_t start = clock();
+
     int initial_size = file_size(input_filename);
     unsigned char *rgb_input = stbi_load(input_filename, &x, &y, &n, 3);
     unsigned char *rgb_output = malloc(sizeof(unsigned char) * 3 * x * y);
@@ -31,14 +33,13 @@ int main(int argc, char **argv){
         return 1;
     }
 
-    clock_t start = clock();
-
     QTreeNode tree = qtree_new(x, y);
     quad_tree_compression(rgb_input, rgb_output, x, y, error_threshold, minimum_block_size,
                           variance_fn, tree);
     stbi_write_png(output_filename, x, y, n, rgb_output, x*n);
 
     clock_t end = clock();
+
     
     double exec_time = (double) (end - start) / (double) CLOCKS_PER_SEC * 1000;
     int final_size = file_size(output_filename);
