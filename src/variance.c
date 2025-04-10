@@ -120,16 +120,22 @@ double entropy(const unsigned char *rgb_data, int row_start, int col_start, int 
     double hr = 0, hg = 0, hb = 0;
     int freq_table[3][256];
     create_freq_table(rgb_data, row_start, col_start, row_end, col_end, width, height, freq_table);
-    for (int i = row_start; i <= row_end; i++) {
-        for (int j = col_start; j <= col_end; j++){
-            pr = (double) freq_table[0][rgb_data[(i * width + j) * 3]] / area;
-            pg = (double) freq_table[1][rgb_data[(i * width + j) * 3 + 1]] / area;
-            pb = (double) freq_table[2][rgb_data[(i * width + j) * 3 + 2]] / area;
+ 
+    for (int i = 0; i < 256; i++) {
+        if (freq_table[0][i] > 0) {
+            double pr = (double) freq_table[0][i] / area;
             hr += pr * log2(pr);
+        }
+        if (freq_table[1][i] > 0) {
+            double pg = (double) freq_table[1][i] / area;
             hg += pg * log2(pg);
+        }
+        if (freq_table[2][i] > 0) {
+            double pb = (double) freq_table[2][i] / area;
             hb += pb * log2(pb);
         }
     }
+
     hr *= -1;
     hg *= -1;
     hb *= -1;

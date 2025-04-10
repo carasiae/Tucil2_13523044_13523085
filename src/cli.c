@@ -63,7 +63,7 @@ void get_input(char* input_filepath,
             case 1: printf("[0 - 16000]: \n"); break;
             case 2: printf("[0 - 255]: \n"); break;
             case 3: printf("[0 - 255]: \n"); break;
-            case 4: printf("[0 - 7.9]: \n"); break;
+            case 4: printf("[0 - 8]: \n"); break;
         }
         printf(">>> ");
         scanf("%lf", error_threshold);
@@ -78,7 +78,7 @@ void get_input(char* input_filepath,
                 if (*error_threshold >= 0 && *error_threshold <= 255) valid = 1;
                 break;
             case 4: 
-                if (*error_threshold >= 0 && *error_threshold <= 7.9) valid = 1;
+                if (*error_threshold >= 0 && *error_threshold <= 8) valid = 1;
                 break;
         }
         if (!valid) puts("Invalid input range.");
