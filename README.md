@@ -12,7 +12,7 @@
 
 ## 📌 Overview
 
-This project is an assignment for the IF2211 Strategi Algoritma course. The main purpose of this assignment is to implement a **divide-and-conquer algorithms**againts a problem we may face in daily life. One such problem is compressing an image. Through this project, we can deepens our understanding of divide-and-conquer algorithms and experience the strengths and limitations of divide-and-conquer algorithms.
+This project is an assignment for the IF2211 Strategi Algoritma course. The main purpose of this assignment is to implement a **divide-and-conquer algorithms** againts a problem we may face in daily life. One such problem is compressing an image. Through this project, we can deepens our understanding of divide-and-conquer algorithms and experience the strengths and limitations of divide-and-conquer algorithms.
 
 ---
 
@@ -33,7 +33,7 @@ This project implements a quadtree compression algorithm for efficiently reducin
 
 ## 🛠️ Installation & Setup
 ### **1️⃣ Prerequisites**
-Download stb_image.h & stb_image_write.h library if not yet installed
+Install dependencies if not yet installed
 ```
 make dep
 ```
