@@ -25,7 +25,7 @@ void quad_tree_compression(const unsigned char  *rgb_input,
                            int                  height,
                            double               error_threshold,
                            int                  minimum_block_size,
-                           VarianceFunction     variance_fn,
+                           VarianceFunction    *variance_fn,
                            QTreeNode            tree);
 
 #endif
