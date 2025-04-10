@@ -4,7 +4,7 @@ OUTPUT_FOLDER = bin
 FLAG = -fopenmp
 
 build:
-	@$(CC) $(FLAG) $(SOURCE_FOLDER)/*.c -o $(OUTPUT_FOLDER)/app
+	@$(CC) $(FLAG) $(SOURCE_FOLDER)/*.c -o $(OUTPUT_FOLDER)/app -lm
 
 clean:
 	@rm -f $(OUTPUT_FOLDER)/app
@@ -12,10 +12,7 @@ clean:
 run:
 	@$(OUTPUT_FOLDER)/app	
 
-all:
-	build
-	clean
-	run
+all: clean build run
 
 dep:
 	@curl -L https://github.com/nothings/stb/blob/master/stb_image.h?raw=true -o ./src/stb_image.h

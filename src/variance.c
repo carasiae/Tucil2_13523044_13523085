@@ -2,7 +2,7 @@
 #include <omp.h>
 
 static unsigned int seed = 100;
-RGB average(const unsigned char *rgb_data, int row_start, int col_start, int row_end,
+RGB average_rgb(const unsigned char *rgb_data, int row_start, int col_start, int row_end,
             int col_end,int width, int height){
     RGB res;
     double r, g, b;

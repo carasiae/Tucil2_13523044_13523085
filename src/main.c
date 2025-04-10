@@ -3,20 +3,23 @@
 #include "compression.h"
 #include "qtree.h"
 #include "variance.h"
+#include "cli.h"
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_ONLY_PNG
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+int MAX_FILEPATH_LEN = 1024;
+
 int main(int argc, char **argv){
-    char *input_filename;
-    char *output_filename;
+    char input_filename[MAX_FILEPATH_LEN];
+    char output_filename[MAX_FILEPATH_LEN];
     int x, y, n, minimum_block_size;
     double error_threshold;
-    VarianceFunction variance_fn;
-
-    /** TODO: input dialog */
+    VarianceFunction *variance_fn;
+     
+    get_input(input_filename, output_filename, &minimum_block_size, &error_threshold, &variance_fn);
 
     unsigned char *rgb_input = stbi_load(input_filename, &x, &y, &n, 3);
     unsigned char *rgb_output;
