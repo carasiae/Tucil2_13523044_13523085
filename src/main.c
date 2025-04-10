@@ -43,7 +43,7 @@ int main(int argc, char **argv){
     
     double exec_time = (double) (end - start) / (double) CLOCKS_PER_SEC * 1000;
     int final_size = file_size(output_filename);
-    double ratio = (double) (initial_size - final_size) / (double) final_size * 100;
+    double ratio = (double) (initial_size - final_size) / (double) initial_size * 100;
     printf("Waktu eksekusi   : %f ms\n", exec_time);
     printf("Kedalaman pohon  : %d\n", qtree_depth(tree));
     printf("Banyak node pohon: %d\n", qtree_n_nodes(tree));
