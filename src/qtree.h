@@ -5,9 +5,9 @@
 
 /** RGB struct for storing rgb value */
 typedef struct _RGB {
-    char r;
-    char g;
-    char b;
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
 } RGB;
 
 #define LEAF_NODE 0
