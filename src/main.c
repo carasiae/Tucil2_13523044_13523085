@@ -45,8 +45,8 @@ int main(int argc, char **argv){
     int final_size = file_size(output_filename);
     double ratio = (double) (initial_size - final_size) / (double) final_size * 100;
     printf("Waktu eksekusi   : %f ms\n", exec_time);
-    printf("Kedalaman pohon  : %d\n", qtree_depth(tree));
-    printf("Banyak node pohon: %d\n", qtree_n_nodes(tree));
+    // printf("Kedalaman pohon  : %d\n", qtree_depth(tree));
+    // printf("Banyak node pohon: %d\n", qtree_n_nodes(tree));
     printf("Besar file awal  : %d byte\n", initial_size);
     printf("Besar file akhir : %d byte\n", final_size);
     printf("Rasio kompresi   : %.2f%%\n", ratio);
