@@ -39,9 +39,10 @@ typedef struct _QTreeNode{
 
 #define NODE(p) (*(p))
 
-/** Initializes a quad tree
-    @param  quad_tree   pointer to a QTree to be initialized.
-    @return the same QTree pointer if initialization succeeded.
+/** Creates a new quad tree
+    @param  width   width of the image which the tree correlates to.
+    @param  height  height of the image which the tree correlates to.
+    @return a new quatree if the creation is successfull,
             NULL otherwise.
 */
 QTreeNode qtree_new(int width, int height);
@@ -49,9 +50,24 @@ QTreeNode qtree_new(int width, int height);
 /** Subdivide a leaf node.
     Turn a leaf node into an internal node and allocate four of its children.
     @return the index of the first child of the original node if successful,
-            -1 if fails.
+            -1 otherwise.
 */
 QTreeNode qtree_subdivide(QTreeNode node_idx);
 
+/** Deallocate a quad tree
+    @param  quad_tree   pointer to a QTree to be destroyed.
+*/
 void qtree_destroy(QTreeNode qtree);
+
+/** Compute depth of a tree
+    @param  tree   the root node of the tree.
+    @return the depth of the tree.
+*/
+int qtree_depth(QTreeNode tree);
+
+/** Compute the total number of nodes of a tree
+    @param  tree   the root node of the tree.
+    @return the total number of nodes of the tree.
+*/
+int qtree_n_nodes(QTreeNode tree);
 #endif

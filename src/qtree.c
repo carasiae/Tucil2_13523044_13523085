@@ -3,6 +3,57 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+#define max(a, b) ((a) > (b) ? (a) : (b))
+
+int qtree_depth_helper(QTreeNode first_child){
+    int depth = 1;
+    if (NODE(first_child).node_type == INTERNAL_NODE){
+        int child_depth = qtree_depth_helper(NODE(first_child).data.first_child);
+        depth = max(depth, child_depth+1);
+    }
+    if (NODE(first_child+1).node_type == INTERNAL_NODE){
+        int child_depth = qtree_depth_helper(NODE(first_child+1).data.first_child);
+        depth = max(depth, child_depth+1);
+    }
+    if (NODE(first_child+2).node_type == INTERNAL_NODE){
+        int child_depth = qtree_depth_helper(NODE(first_child+2).data.first_child);
+        depth = max(depth, child_depth+1);
+    }
+    if (NODE(first_child+3).node_type == INTERNAL_NODE){
+        int child_depth = qtree_depth_helper(NODE(first_child+3).data.first_child);
+        depth = max(depth, child_depth+1);
+    }
+    return depth;
+}
+
+int qtree_depth(QTreeNode tree){
+    return 1 + qtree_depth_helper(NODE(tree).data.first_child);
+}
+
+int qtree_n_nodes_helper(QTreeNode first_child){
+    int n = 4;
+    if (NODE(first_child).node_type == INTERNAL_NODE){
+        n += qtree_n_nodes_helper(NODE(first_child).data.first_child);
+    }
+    if (NODE(first_child+1).node_type == INTERNAL_NODE){
+        n += qtree_n_nodes_helper(NODE(first_child+1).data.first_child);
+    }
+    if (NODE(first_child+2).node_type == INTERNAL_NODE){
+        n += qtree_n_nodes_helper(NODE(first_child+2).data.first_child);
+    }
+    if (NODE(first_child+3).node_type == INTERNAL_NODE){
+        n += qtree_n_nodes_helper(NODE(first_child+3).data.first_child);
+    }
+    return n;
+}
+
+int qtree_n_nodes(QTreeNode tree){
+    if (tree == NULL){
+        return 0;
+    }
+    return 1 + qtree_n_nodes_helper(NODE(tree).data.first_child);
+}
+
 QTreeNode qtree_new(int width, int height) {
     QTreeNode res = malloc(sizeof(struct _QTreeNode));
     res->width = width;
