@@ -1,5 +1,6 @@
 stb_image.h
 stb_image_write.h
+gif.h
 *.png
 bin/*
 .vscode
