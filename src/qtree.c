@@ -53,6 +53,8 @@ int qtree_n_nodes_helper(QTreeNode first_child){
 int qtree_n_nodes(QTreeNode tree){
     if (tree == NULL){
         return 0;
+    } else if (NODE(tree).node_type == LEAF_NODE){
+        return 1;
     }
     return 1 + qtree_n_nodes_helper(NODE(tree).data.first_child);
 }
