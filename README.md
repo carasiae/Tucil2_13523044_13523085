@@ -11,15 +11,14 @@
 ---
 
 ## 📌 Overview
-<div align="center">
-    <img src="https://github.com/carasiae/quadtree/blob/main/assets/flower.gif?raw=true" alt="flower" width="400"/>
-</div>
 This project is an assignment for the IF2211 Strategi Algoritma course. The main purpose of this assignment is to implement a **divide-and-conquer algorithms** againts a problem we may face in daily life. One such problem is compressing an image. Through this project, we can deepens our understanding of divide-and-conquer algorithms and experience the strengths and limitations of divide-and-conquer algorithms.
 
 ---
 
 ## 📖 About
-
+<div align="center">
+    <img src="https://github.com/carasiae/quadtree/blob/main/assets/flower.gif?raw=true" alt="flower" width="400"/>
+</div>
 This project implements a quadtree compression algorithm for efficiently reducing image size by recursively dividing an image into quadrants. Uniform regions are stored as single nodes (and colored with the same color), while more complex areas are split further. It's especially effective for compressing images with large areas of similar color.
 ### Features
 - Customizable pixel variance function
