@@ -3,4 +3,3 @@ stb_image_write.h
 *.png
 bin/*
 .vscode
-*.gif
