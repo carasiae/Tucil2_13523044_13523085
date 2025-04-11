@@ -18,7 +18,10 @@ This project is an assignment for the IF2211 Strategi Algoritma course. The main
 ## 📖 About
 <div align="center">
     <img src="https://github.com/carasiae/quadtree/blob/main/assets/flower.gif?raw=true" alt="flower" width="400"/>
+    
 </div>
+<p align="center"><i>QuadTree Compression Process</i></p>
+
 This project implements a quadtree compression algorithm for efficiently reducing image size by recursively dividing an image into quadrants. Uniform regions are stored as single nodes (and colored with the same color), while more complex areas are split further. It's especially effective for compressing images with large areas of similar color.
 
 ### Features
@@ -36,18 +39,36 @@ This project implements a quadtree compression algorithm for efficiently reducin
 ## 🛠️ Installation & Setup
 ### **1️⃣ Prerequisites**
 Install dependencies if not yet installed
+#### Linux
 ```
 make dep
 ```
-### **1️⃣ Build**
+#### Windows
+```
+./build.bat dep
+```
+### **2️⃣ Build**
+#### Linux
 To build the project, run
 ```
 make build
 ```
-## **Usage**
+#### Windows
+```
+chcp 65001           // set pwsh or cmd output to utf-8
+```
+```
+./build.bat build
+```
+### **3️⃣ Usage**
 To run the program, run
+#### Linux
 ```
 make run
+```
+#### Windows
+```
+./build.bat run
 ```
 
 ---
