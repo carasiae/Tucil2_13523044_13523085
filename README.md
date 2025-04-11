@@ -73,7 +73,8 @@ make run
 
 ---
 
-(\*) licensed under MIT license:
+(\*) Source: https://github.com/nothings/stb
+licensed under MIT license:
 ```
 Copyright (c) 2017 Sean Barrett
 Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -93,7 +94,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-(\*\*) licensed under Unlicense:
+(\*\*) Source: https://github.com/charlietangora/gif-h/
+licensed under Unlicense:
 ```
 This is free and unencumbered software released into the public domain.
 
