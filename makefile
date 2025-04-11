@@ -17,4 +17,3 @@ all: clean build run
 dep:
 	@curl -L https://github.com/nothings/stb/blob/master/stb_image.h?raw=true -o ./src/stb_image.h
 	@curl -L https://github.com/nothings/stb/blob/master/stb_image_write.h?raw=true -o ./src/stb_image_write.h
-	@curl -L https://github.com/charlietangora/gif-h/blob/master/gif.h?raw=true -o ./src/gif.h
