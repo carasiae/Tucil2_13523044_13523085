@@ -49,13 +49,13 @@ int main(int argc, char **argv){
 
     // gif creation
     create_gif(tree, gif_output_filename, x, y, tree_depth);
-
-    printf("Waktu eksekusi   : %f ms\n", exec_time);
-    printf("Kedalaman pohon  : %d\n", tree_depth);
-    printf("Banyak node pohon: %d\n", qtree_n_nodes(tree));
-    printf("Besar file awal  : %d byte\n", initial_size);
-    printf("Besar file akhir : %d byte\n", final_size);
-    printf("Rasio kompresi   : %.2f%%\n", ratio);
+    puts("Success!");
+    printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Waktu eksekusi\033[0m   : %f ms\n", exec_time);
+    printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Kedalaman pohon\033[0m  : %d\n", tree_depth);
+    printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Banyak node pohon\033[0m: %d\n", qtree_n_nodes(tree));
+    printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Besar file awal\033[0m  : %d byte\n", initial_size);
+    printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Besar file akhir\033[0m : %d byte\n", final_size);
+    printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Rasio kompresi\033[0m   : %.2f%%\n", ratio);
 
     
     free(rgb_output);
