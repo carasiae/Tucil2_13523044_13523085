@@ -20,6 +20,7 @@ This project is an assignment for the IF2211 Strategi Algoritma course. The main
     <img src="https://github.com/carasiae/quadtree/blob/main/assets/flower.gif?raw=true" alt="flower" width="400"/>
 </div>
 This project implements a quadtree compression algorithm for efficiently reducing image size by recursively dividing an image into quadrants. Uniform regions are stored as single nodes (and colored with the same color), while more complex areas are split further. It's especially effective for compressing images with large areas of similar color.
+
 ### Features
 - Customizable pixel variance function
 - Adjustable variance threshold
