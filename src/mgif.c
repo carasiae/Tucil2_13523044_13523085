@@ -19,7 +19,7 @@ void create_gif_frame(GifWriter *writer, unsigned char *rgb_output, int width, i
 
 void create_gif_helper(QTreeNode tree, unsigned char * gif_rgb_output, 
                        int x, int y, int cur_depth, int max_depth) {
-    for (int i = cur_depth; i < max_depth; i++) {
+    for (int i = cur_depth; i <= max_depth; i++) {
         fill_color(gif_rgb_output + (3 * x * y * i), x, y, tree);
     }
 
@@ -32,14 +32,14 @@ void create_gif_helper(QTreeNode tree, unsigned char * gif_rgb_output,
 }
 
 void create_gif(QTreeNode tree, char * filepath, int x, int y, int max_depth) {
-    unsigned char * gif_rgb_output = malloc(sizeof(unsigned char) * 3 * x * y * max_depth);
+    unsigned char * gif_rgb_output = malloc(sizeof(unsigned char) * 3 * x * y * (max_depth+1));
     GifWriter writer;
     GifBegin(&writer, filepath, x, y, 70, 8, false);
 
     create_gif_helper(tree, gif_rgb_output, x, y, 0, max_depth);
 
     // Combine each layer of the tree into a GIF
-    for (int i = 0; i < max_depth; i++) {
+    for (int i = 0; i <= max_depth; i++) {
         create_gif_frame(&writer, gif_rgb_output + (3 * x * y * i), x, y);
     }
 
