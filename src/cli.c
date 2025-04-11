@@ -1,23 +1,13 @@
 #include "cli.h"
 #include <stdio.h>
 #include <string.h>
+#include "file_size.h"
 
 void clean_and_moveup_cursor(int nlines) {
     for (int i = 0; i < nlines; i++) {
         printf("\033[2K\033[1A");
     }
     printf("\033[2K");
-}
-
-void show_input_data(char* input_filepath, 
-                     char* output_filepath, 
-                     char* gif_output_filename, 
-                     int minimum_block_size,
-                     double error_threshold,
-                     int choice) {
-
-
-    
 }
 
 void get_input(char* input_filepath, 
@@ -28,7 +18,7 @@ void get_input(char* input_filepath,
                VarianceFunction** variance_fn) {
     
     puts(
-    "\033[38;2;56;118;29m ██████╗ ██╗   ██╗ █████╗ ██████╗     ████████╗██████╗ ███████╗███████╗                   \n"
+    "\n\033[38;2;56;118;29m ██████╗ ██╗   ██╗ █████╗ ██████╗     ████████╗██████╗ ███████╗███████╗                   \n"
     "██╔═══██╗██║   ██║██╔══██╗██╔══██╗    ╚══██╔══╝██╔══██╗██╔════╝██╔════╝                   \n"
     "██║   ██║██║   ██║███████║██║  ██║       ██║   ██████╔╝█████╗  █████╗                     \n"
     "██║▄▄ ██║██║   ██║██╔══██║██║  ██║       ██║   ██╔══██╗██╔══╝  ██╔══╝                     \n"
@@ -52,6 +42,7 @@ void get_input(char* input_filepath,
         printf(">>> \033[0K");
         fgets(input_filepath, MAX_FILEPATH_LEN, stdin);
         input_filepath[strcspn(input_filepath, "\n")] = '\0';
+        trim(input_filepath);
         FILE *file = fopen(input_filepath, "r");
         if (file) {
             fclose(file);
@@ -119,7 +110,7 @@ void get_input(char* input_filepath,
         clean_and_moveup_cursor(2);
         printf("\nInsert error threshold ");
         switch (choice) {
-            case 1: printf("[0 - 16000]: \n"); break;
+            case 1: printf("[0 - 65025]: \n"); break;
             case 2: printf("[0 - 255]: \n"); break;
             case 3: printf("[0 - 255]: \n"); break;
             case 4: printf("[0 - 8]: \n"); break;
@@ -154,7 +145,7 @@ void get_input(char* input_filepath,
     valid = 0;
     while (!valid) {
         clean_and_moveup_cursor(2);
-        puts("\nInsert minimum block size:");
+        puts("\nInsert minimum block size [0 - image_size]:");
         printf(">>> ");
         scanf("%d", minimum_block_size);
         if (*minimum_block_size > 0) valid = 1;
@@ -175,6 +166,11 @@ void get_input(char* input_filepath,
         printf(">>> \033[0K");
         fgets(output_filepath, MAX_FILEPATH_LEN, stdin);
         output_filepath[strcspn(output_filepath, "\n")] = '\0';
+        trim(output_filepath);
+        if (strcmp(input_filepath, output_filepath) == 0) {
+            printf("Output file cannot be the same as input file\033[1A");
+            continue;
+        }
         FILE *file = fopen(output_filepath, "wb");
         if (file == NULL) {
             printf("File directory doesn't exist. please try again\033[1A");
@@ -197,6 +193,11 @@ void get_input(char* input_filepath,
         printf(">>> \033[0K");
         fgets(gif_output_filename, MAX_FILEPATH_LEN, stdin);
         gif_output_filename[strcspn(gif_output_filename, "\n")] = '\0';
+        trim(gif_output_filename);
+        if (strcmp(input_filepath, gif_output_filename) == 0) {
+            printf("Output file cannot be the same as input file\033[1A");
+            continue;
+        }
         FILE *file = fopen(gif_output_filename, "wb");
         if (file == NULL) {
             printf("File directory doesn't exist. please try again\033[1A");
@@ -209,6 +210,6 @@ void get_input(char* input_filepath,
     puts("\033[2K");
     clean_and_moveup_cursor(4);
     printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Output GIF Absolute Path\033[0m   : %s\n\n", gif_output_filename);
-    puts("\033[38;2;206;126;0mCompressing....\n");
+    puts("\033[38;2;206;126;0mCompressing....\033[0m\n");
 }
 

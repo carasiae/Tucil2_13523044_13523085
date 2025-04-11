@@ -5,7 +5,6 @@
 #include "variance.h"
 #include "cli.h"
 #define STB_IMAGE_IMPLEMENTATION
-#define STBI_ONLY_PNG
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
@@ -38,7 +37,19 @@ int main(int argc, char **argv){
     QTreeNode tree = qtree_new(x, y);
     quad_tree_compression(rgb_input, rgb_output, x, y, error_threshold, minimum_block_size,
                           variance_fn, tree);
-    stbi_write_png(output_filename, x, y, n, rgb_output, x*n);
+
+    // write as png or jpg
+    if (has_extension(output_filename, "png")) {
+        stbi_write_png(output_filename, x, y, n, rgb_output, x * n);
+    }
+    else if (has_extension(output_filename, "jpg") || has_extension(output_filename, "jpeg")){
+        stbi_write_jpg(output_filename, x, y, n, rgb_output, 69);
+    }
+    else {
+        fputs("Not supported file extension\n", stdout);
+        return 1;
+    }
+    
 
     clock_t end = clock();
 
@@ -49,7 +60,7 @@ int main(int argc, char **argv){
 
     // gif creation
     create_gif(tree, gif_output_filename, x, y, tree_depth);
-    puts("Success!");
+    puts("\033[38;2;206;126;0mSuccess!");
     printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Waktu eksekusi\033[0m   : %f ms\n", exec_time);
     printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Kedalaman pohon\033[0m  : %d\n", tree_depth);
     printf("\033[38;2;177;209;130m[*]\033[38;2;206;126;0m Banyak node pohon\033[0m: %d\n", qtree_n_nodes(tree));
