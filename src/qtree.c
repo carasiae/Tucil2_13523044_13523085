@@ -27,7 +27,10 @@ int qtree_depth_helper(QTreeNode first_child){
 }
 
 int qtree_depth(QTreeNode tree){
-    return 1 + qtree_depth_helper(NODE(tree).data.first_child);
+    if (NODE(tree).node_type == LEAF_NODE){
+        return 0;
+    }
+    return qtree_depth_helper(NODE(tree).data.first_child);
 }
 
 int qtree_n_nodes_helper(QTreeNode first_child){
