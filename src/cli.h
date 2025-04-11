@@ -13,6 +13,7 @@ extern int MAX_FILEPATH_LEN;
 */
 void get_input(char* input_filepath, 
                char* output_filepath, 
+               char* gif_output_filename, 
                int* minimum_block_size,
                double* error_threshold,
                VarianceFunction** variance_fn);

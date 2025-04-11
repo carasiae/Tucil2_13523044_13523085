@@ -27,7 +27,7 @@ typedef struct _QTreeNode{
     /** node's height */
     int height;
     /** content of the quadtree */
-    union _data {
+    struct _data {
         /** Internal node's first child */
         struct _QTreeNode *first_child;
         /** leaf node's RGB value */

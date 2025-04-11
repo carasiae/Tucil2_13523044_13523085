@@ -1,10 +1,10 @@
 CC = gcc
 SOURCE_FOLDER = src
 OUTPUT_FOLDER = bin
-FLAG = -lm -O
+FLAG = -O
 
 build:
-	@$(CC) $(FLAG) $(SOURCE_FOLDER)/*.c -o $(OUTPUT_FOLDER)/app
+	@$(CC) $(FLAG) $(SOURCE_FOLDER)/*.c -o $(OUTPUT_FOLDER)/app -lm
 
 clean:
 	@rm -f $(OUTPUT_FOLDER)/app

@@ -35,14 +35,14 @@ int qtree_n_nodes_helper(QTreeNode first_child){
     if (NODE(first_child).node_type == INTERNAL_NODE){
         n += qtree_n_nodes_helper(NODE(first_child).data.first_child);
     }
-    if (NODE(first_child+1).node_type == INTERNAL_NODE){
-        n += qtree_n_nodes_helper(NODE(first_child+1).data.first_child);
+    if (NODE(first_child + 1).node_type == INTERNAL_NODE){
+        n += qtree_n_nodes_helper(NODE(first_child + 1).data.first_child);
     }
-    if (NODE(first_child+2).node_type == INTERNAL_NODE){
-        n += qtree_n_nodes_helper(NODE(first_child+2).data.first_child);
+    if (NODE(first_child + 2).node_type == INTERNAL_NODE){
+        n += qtree_n_nodes_helper(NODE(first_child + 2).data.first_child);
     }
-    if (NODE(first_child+3).node_type == INTERNAL_NODE){
-        n += qtree_n_nodes_helper(NODE(first_child+3).data.first_child);
+    if (NODE(first_child + 3).node_type == INTERNAL_NODE){
+        n += qtree_n_nodes_helper(NODE(first_child + 3).data.first_child);
     }
     return n;
 }

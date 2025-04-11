@@ -3,7 +3,6 @@
 #include "qtree.h"
 #include "variance.h"
 
-
 /** Does exactly as it sounds
     @param rgb_input            input image as arrays of pixel in the same
                                 format as in stb_image library
@@ -28,4 +27,16 @@ void quad_tree_compression(const unsigned char  *rgb_input,
                            VarianceFunction    *variance_fn,
                            QTreeNode            tree);
 
+/** fills an arrays of pixel with the corresponding tree
+    @param rgb_output           output image as arrays of pixel in the same
+                                format as in stb_image library
+    @param width                width of the image in pixels
+    @param height               height of the image in pixels
+    @param tree                 current node of quadtree (representing a part
+                                of image) processed 
+*/
+void fill_color(unsigned char       *rgb_output,
+                int                  width,
+                int                  height,
+                QTreeNode            tree);
 #endif

@@ -4,6 +4,7 @@
 
 void get_input(char* input_filepath, 
               char* output_filepath, 
+              char* gif_output_filename, 
               int* minimum_block_size,
               double* error_threshold,
               VarianceFunction** variance_fn) {
@@ -110,6 +111,24 @@ void get_input(char* input_filepath,
         fgets(output_filepath, MAX_FILEPATH_LEN, stdin);
         output_filepath[strcspn(output_filepath, "\n")] = '\0';
         FILE *file = fopen(output_filepath, "wb");
+        if (file == NULL) {
+            puts("File directory doesn't exist. please try again");
+        }
+        else {
+            fclose(file);
+            valid = 1;    
+        }
+    }
+
+    // get output filepath
+    valid = 0;
+    while (!valid) {
+        puts(" ");
+        puts("Insert absolute path to output GIF file: ");
+        printf(">>> ");
+        fgets(gif_output_filename, MAX_FILEPATH_LEN, stdin);
+        gif_output_filename[strcspn(gif_output_filename, "\n")] = '\0';
+        FILE *file = fopen(gif_output_filename, "wb");
         if (file == NULL) {
             puts("File directory doesn't exist. please try again");
         }

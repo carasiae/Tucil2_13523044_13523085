@@ -11,17 +11,19 @@
 #include "stb_image_write.h"
 #include <time.h>
 #include "file_size.h"
+#include "mgif.h"
 
 int MAX_FILEPATH_LEN = 1024;
 
 int main(int argc, char **argv){
     char input_filename[MAX_FILEPATH_LEN];
     char output_filename[MAX_FILEPATH_LEN];
+    char gif_output_filename[MAX_FILEPATH_LEN];
     int x, y, n, minimum_block_size;
     double error_threshold;
     VarianceFunction *variance_fn;
      
-    get_input(input_filename, output_filename, &minimum_block_size, &error_threshold, &variance_fn);
+    get_input(input_filename, output_filename, gif_output_filename, &minimum_block_size, &error_threshold, &variance_fn);
 
     clock_t start = clock();
 
@@ -40,15 +42,21 @@ int main(int argc, char **argv){
 
     clock_t end = clock();
 
-    
     double exec_time = (double) (end - start) / (double) CLOCKS_PER_SEC * 1000;
     int final_size = file_size(output_filename);
     double ratio = (double) (initial_size - final_size) / (double) initial_size * 100;
+    int tree_depth = qtree_depth(tree);
+
+    // gif creation
+    create_gif(tree, gif_output_filename, x, y, tree_depth);
+
     printf("Waktu eksekusi   : %f ms\n", exec_time);
-    printf("Kedalaman pohon  : %d\n", qtree_depth(tree));
+    printf("Kedalaman pohon  : %d\n", tree_depth);
     printf("Banyak node pohon: %d\n", qtree_n_nodes(tree));
     printf("Besar file awal  : %d byte\n", initial_size);
     printf("Besar file akhir : %d byte\n", final_size);
     printf("Rasio kompresi   : %.2f%%\n", ratio);
 
+    
+    free(rgb_output);
 }

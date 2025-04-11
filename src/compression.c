@@ -13,7 +13,6 @@ void fill_color(unsigned char       *rgb_output,
     unsigned char r = NODE(tree).data.rgb.r;
     unsigned char g = NODE(tree).data.rgb.g;
     unsigned char b = NODE(tree).data.rgb.b;
-    // printf("row: %d-%d col:%d-%d r:%d g:%d b:%d\n", row_start, row_end, col_start, col_end, tree->data.rgb.r, tree->data.rgb.g, tree->data.rgb.b);
     for (int i = row_start; i <= row_end; i++){
         for (int j = col_start; j <= col_end; j++){
             rgb_output[(i*width+j)*3] = r;
@@ -22,7 +21,6 @@ void fill_color(unsigned char       *rgb_output,
         }
     }
 }
-
 
 void quad_tree_compression(const unsigned char *rgb_input,
                                    unsigned char       *rgb_output,
@@ -36,6 +34,11 @@ void quad_tree_compression(const unsigned char *rgb_input,
     int col_start = NODE(tree).col;
     int row_end = row_start + NODE(tree).height - 1;
     int col_end = col_start + NODE(tree).width - 1;
+
+    RGB temp = average_rgb(rgb_input, row_start, col_start, row_end,
+        col_end, width, height);
+    NODE(tree).data.rgb = temp;
+
     // can't subdivide further
     if (NODE(tree).width * NODE(tree).height / 4 < minimum_block_size) {
         goto compute_color;
@@ -50,16 +53,12 @@ void quad_tree_compression(const unsigned char *rgb_input,
         for (int i = 0; i < 4; i++) {
             quad_tree_compression(rgb_input, rgb_output, width, height,
                                           error_threshold, minimum_block_size,
-                                          variance_fn, next+i);
+                                          variance_fn, next + i);
         }
         return;
     } 
 
 compute_color:;
-    RGB temp = average_rgb(rgb_input, row_start, col_start, row_end,
-                                      col_end, width, height);
-    NODE(tree).data.rgb = temp;
-    // printf("row: %d-%d col:%d-%d r:%d g:%d b:%d\n", row_start, row_end, col_start, col_end, temp.r, temp.g, temp.b);
     fill_color(rgb_output, width, height, tree);
     return;
 }
